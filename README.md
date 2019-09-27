@@ -1,2 +1,2 @@
-# Cancer-Bot
-Discord Bot who is the cancer of the community
+# Francisco-Bot
+Discord Bot that can the worst jokes of the community
