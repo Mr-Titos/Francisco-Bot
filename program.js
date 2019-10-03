@@ -72,6 +72,22 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
     else if(res.substring(res.length - 3) === "oui")  {
         msg.reply("stiti !");
     } 
+    else if(res.substring(res.length - 3) === "pas") {
+        msg.reply("stèque !");
+    }
+    else if(res === "re") {
+        if(c === 1) {
+            msg.reply("nard !");
+        }
+        else if(c === 2) {
+            msg.reply("quin ?");
+        }
+        else {
+            msg.reply("né LA TAUPE !")
+        }
+        console.log(c);
+        c = getRandom(0,2);
+    }
     else if(res === "de" || res.substring(res.length - 3) === "deu" || res.substring(res.length - 4) === "deux") {
         msg.reply("3 !");
     }
