@@ -32,7 +32,7 @@ bot.on('ready', function () {
 try {
 bot.on('message', msg => {
 if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ici j'empeche le bot de se répondre a lui même et a mon compte
-    if(msg.content.includes("charo ") && msg.guild.id == adagio.id || msg.content == "charo" && msg.guild.id == adagio.id) { // Demande d'un ami pour empêcher ce mot sur son serv
+    if(msg.content.toLowerCase().includes("charo ") && msg.guild.id == adagio.id || msg.content.toLowerCase() == "charo" && msg.guild.id == adagio.id) { // Demande d'un ami pour empêcher ce mot sur son serv
         msg.delete();
     } else {
         getmsg(msg).then( function(res) { 
