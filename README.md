@@ -1,2 +1,2 @@
 # Francisco-Bot
-Discord Bot that can the worst jokes of the community
+Discord Bot that can do the worst jokes of the community
