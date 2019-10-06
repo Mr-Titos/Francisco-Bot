@@ -6,25 +6,18 @@ const token = process.env.DISCORD_TOKEN;
 
 var c = 0;
 var tabJoke;
+var tabStats;
+var pathStatsRecap = "Stats-Recap/";
 var adagio; // Serveur de l'ami qui ne veut plus du mot "charo"
 
 try {
 bot.on('ready', function () {
     c = getRandom(0,2);
+    setInterval(resetStats, 10000); // 3 days = 259200000 ms
     console.log("Francisco-Bot connecté !");
     adagio = bot.guilds.find("id", "627657355764695040");
-    fs.readFile('jokes.json', 'utf8', (err, jsonString) => {
-        if (err) {
-            console.log("File read failed:", err)
-            return
-        } else {
-            try {
-                tabJoke = JSON.parse(jsonString)
-        } catch(err) {
-                console.log('Error parsing Jokes JSON string:', err)
-            } 
-        }
-    });
+    loadJokes();
+    loadStats();
 
 })
 } catch (exc) { console.log(exc); }
@@ -38,6 +31,7 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
         getmsg(msg).then( function(res) { 
         
         if(res.substring(res.length - 3) === "ein") {
+            addStats("hein");
             if(c === 1) {
                 msg.reply("dien !");
             }
@@ -50,12 +44,15 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
         c = getRandom(0,2);
         }
         else if(res.substring(res.length - 3) === "oui")  {
+            addStats("oui");
             msg.reply("stiti !");
         } 
         else if(res.substring(res.length - 3) === "pas") {
+            addStats("pas");
             msg.reply("stèque !");
         }
         else if(res === "re") {
+            addStats("re");
             if(c === 1) {
                 msg.reply("nard !");
             }
@@ -68,9 +65,11 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
             c = getRandom(0,2);
         }
         else if(res === "de" || res.substring(res.length - 3) === "deu" || res.substring(res.length - 4) === "deux") {
+            addStats("de");
             msg.reply("3 !");
         }
         else if(res.substring(res.length - 4) === "quoi") {
+            addStats("quoi");
                 if(c === 1) {
                     msg.reply("fure !");
                 }
@@ -83,20 +82,25 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
         c = getRandom(0,2);
         }
         else if(res.substring(res.length - 5) === "ouais") {
+            addStats("ouais");
                 msg.reply("stern !");
         }
         else if(res === "o" || res === "oo" || res === "ooo" || res === "oooo" || res === "ooooo" || res === "oooooo") {
-                msg.reply("bama !");
+            addStats("o");
+            msg.reply("bama !");
         }
         else if(res.substring(res.length - 7) === "comment" || res.substring(res.length - 6) === "commen") {
+            addStats("comment");
             msg.reply("do Ghost Recon !");
         }
         else if(res.substring(res.length - 4) === "fort" || res.substring(res.length - 3) === "for") {
+            addStats("fort");
             msg.reply("midable");
         }
         else if(res === "a" || res === "aa" || res === "aaa" || res === "aaaa" || res === "aaaaa" || res === "aaaaaa") {
 
             if(res.substring(res.length - 2) === "ba") {
+                addStats("ba");
                 if(c === 1) {
                     msg.reply("nane !");
                 }
@@ -109,6 +113,7 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
                 c = getRandom(0,2);
             }
             else {
+                addStats("a");
                 if(c === 1) {
                     msg.reply("raignée !");
                 }
@@ -122,9 +127,11 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
             }
         }
         else if(res.substring(res.length - 9) === "t'esmoche" || res.substring(res.length - 8) === "tesmoche" || res.substring(res.length - 6) === "tmoche" || res.substring(res.length - 5) === "tpabo") {
+            addStats("moche");
             msg.reply("Toi aussi :p");
         } else {
-            if(getRandom(0,100) === 69) { 
+            if(getRandom(0,100) === 69) {
+                addStats("jokes"); 
                 joke(msg);
             }
         }
@@ -134,6 +141,7 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
     } 
 } else if(msg.author.id == 131930102224125954) {
         if(msg.content.includes(bot.user.id) && msg.content.includes("blague")) {
+            addStats("jokes");
             joke(msg);
         } else if(msg.content.includes(bot.user.id) && !msg.content.includes("blague")) {
             msg.reply("Lui c'est un bon !");
@@ -183,6 +191,68 @@ function joke(msg) {
     })
     msg.reply("**" + jokeuh.question + "**" + "\n" + '_' + jokeuh.answer + '_');
 
+}
+
+function loadJokes() {
+    fs.readFile('jokes.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("Jokes file read failed:", err)
+            return
+        } else {
+            try {
+                tabJoke = JSON.parse(jsonString)
+        } catch(err) {
+                console.log('Error parsing Jokes JSON string:', err)
+            } 
+        }
+    });
+}
+
+function loadStats() {
+    fs.readFile('stats.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("Stats file read failed:", err)
+            return
+        } else {
+            try {
+                tabStats = JSON.parse(jsonString)
+        } catch(err) {
+                console.log('Error parsing Stats JSON string:', err)
+            } 
+        }
+    });
+}
+
+function addStats(id) {
+    tabStats.stats.forEach(stat => {
+        if(stat.id === id)
+            stat.count += 1;
+    });
+    var stringifyStats = JSON.stringify(tabStats, null, 2);
+    fs.writeFile('stats.json', stringifyStats, (err) => {
+        if (err) throw err;
+    });
+}
+
+function resetStats() {
+    var date = new Date();
+    if(date.getUTCDate() == 1 || date.getUTCDate() == 16) {
+        var statResult = "Recap "+ date.getUTCDate() + '-' + date.getUTCMonth() + '-' + date.getUTCFullYear();
+        tabStats.stats.forEach(stat => {
+            statResult += "\n" + stat.id + ": " + stat.count;
+        });
+        fs.writeFile(pathStatsRecap + date.getUTCDate() + '-' + date.getUTCMonth() + '-' + date.getUTCFullYear() +".txt", statResult, (err) => {
+            if (err) throw err;
+            console.log('Stats recap written to file');
+            tabStats.stats.forEach(stat => {
+                stat.count = 0;
+            });
+            var stringifyStats = JSON.stringify(tabStats, null, 2);
+            fs.writeFile('stats.json', stringifyStats, (err) => {
+                if (err) throw err;
+            });
+        });
+    }
 }
 
 bot.login(token);
