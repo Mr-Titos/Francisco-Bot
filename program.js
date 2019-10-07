@@ -129,7 +129,7 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
         else if(res.substring(res.length - 9) === "t'esmoche" || res.substring(res.length - 8) === "tesmoche" || res.substring(res.length - 6) === "tmoche" || res.substring(res.length - 5) === "tpabo") {
             addStats("moche");
             msg.reply("Toi aussi :p");
-        } else if(msg.content.includes(bot.user.id) && msg.content.includes("stats")) {
+        } else if(res.includes("stats") && msg.content.includes(bot.user.id)) {
             var statResult = "Reset le 1 et le 16 du mois";
             tabStats.stats.forEach(stat => {
                 statResult += "\n" + stat.id + ": " + stat.count;
@@ -155,8 +155,6 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
                 statResult += "\n" + stat.id + ": " + stat.count;
             });
             msg.author.sendMessage(statResult);
-        } else {
-            msg.reply("Lui c'est un bon !");
         }      
     }
   });
