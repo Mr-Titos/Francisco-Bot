@@ -13,7 +13,7 @@ var adagio; // Serveur de l'ami qui ne veut plus du mot "charo"
 try {
 bot.on('ready', function () {
     c = getRandom(0,2);
-    setInterval(resetStats, 10000); // 3 days = 259200000 ms
+    setInterval(resetStats, 86400000); // 1 day = 86 400 000 ms
     console.log("Francisco-Bot connecté !");
     adagio = bot.guilds.find("id", "627657355764695040");
     loadJokes();
@@ -103,6 +103,10 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
             addStats("fort");
             msg.reply("midable");
         }
+        else if(res.trim() ==="0+0" || res.trim() ==="0 + 0") {
+            addStats("0+0");
+            msg.reply("La tête a Tito");
+        }
         else if(res === "a" || res === "aa" || res === "aaa" || res === "aaaa" || res === "aaaaa" || res === "aaaaaa") {
 
             if(res.substring(res.length - 2) === "ba") {
@@ -118,7 +122,7 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
                 }
                 c = getRandom(0,2);
             }
-            else {
+            else if(res.substring(res.length - 1) === "a"){
                 if(getRandom(0,4) == 2) {
                     addStats("a");
                     if(c === 1) {
@@ -145,7 +149,6 @@ if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ic
             msg.author.sendMessage(statResult);
         } else {
             if(getRandom(0,400) === 69) {
-                addStats("jokes"); 
                 joke(msg);
             }
         }
@@ -179,21 +182,19 @@ function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min +1)) + min;
 }
 
-function getmsg(chainmsg) { 
-        
-        return new Promise(function (resolve, reject) {
-            try {
-                    chainmsg += " ";
-                    var splitmsg = "k";
-                    Array.from(chainmsg).forEach(char => {
-                        if(char !== '?' && char !== '!' && char !== '.' && char !== '*' && char !== ' ' && char.toLowerCase() !== 'h') {
+function getmsg(chainmsg) {     
+    return new Promise(function (resolve, reject) {
+        try {
+                chainmsg += " ";
+                var splitmsg = "k";
+                Array.from(chainmsg).forEach(char => {
+                    if(char !== '?' && char !== '!' && char !== '.' && char !== '*' && char !== ' ' && char.toLowerCase() !== 'h')
                         splitmsg += char.toLowerCase(); 
-                        }
-                    });
-                    resolve(splitmsg.substring(1));
-                }
-        catch(error) {reject(error);}
-        })
+                });
+                resolve(splitmsg.substring(1));
+            }
+    catch(error) {reject(error);}
+    })
 }
 
 
