@@ -2,10 +2,10 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
+const axios = require('axios');
 const token = process.env.DISCORD_TOKEN;
 
 var c = 0;
-var tabJoke;
 var tabStats;
 var pathStatsRecap = "Stats-Recap/";
 var adagio; // Serveur de l'ami qui ne veut plus du mot "charo"
@@ -16,7 +16,6 @@ bot.on('ready', function () {
     setInterval(resetStats, 86400000); // 1 day = 86 400 000 ms
     console.log("Francisco-Bot connecté !");
     adagio = bot.guilds.find("id", "627657355764695040");
-    loadJokes();
     loadStats();
 
 })
@@ -198,31 +197,17 @@ function getmsg(chainmsg) {
 }
 
 
-function joke(msg) {
-    var random = getRandom(0, tabJoke.jokes.length -1);
-    var jokeuh;
-    tabJoke.jokes.forEach(joke => {
-        if(joke.id == random) {
-            jokeuh = joke;
-        }
-    })
+async function joke(msg) {
+    const config = {
+        method: 'get',
+        url: 'http://localhost:4242',
+        headers: { 'method': 'random' }
+    }
+    let res = await axios(config);
+    console.log(res.data);
+    var jokeuh = res.data; // Axios has already do JSON.parse()
     msg.reply("**" + jokeuh.question + "**" + "\n" + '_' + jokeuh.answer + '_');
 
-}
-
-function loadJokes() {
-    fs.readFile('jokes.json', 'utf8', (err, jsonString) => {
-        if (err) {
-            console.log("Jokes file read failed:", err)
-            return
-        } else {
-            try {
-                tabJoke = JSON.parse(jsonString)
-        } catch(err) {
-                console.log('Error parsing Jokes JSON string:', err)
-            } 
-        }
-    });
 }
 
 function loadStats() {
