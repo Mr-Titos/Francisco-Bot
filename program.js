@@ -204,7 +204,6 @@ async function joke(msg) {
         headers: { 'method': 'random' }
     }
     let res = await axios(config);
-    console.log(res.data);
     var jokeuh = res.data; // Axios has already do JSON.parse()
     msg.reply("**" + jokeuh.question + "**" + "\n" + '_' + jokeuh.answer + '_');
 
