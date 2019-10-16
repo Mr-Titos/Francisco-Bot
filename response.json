@@ -1,0 +1,80 @@
+{
+    "responses": [
+      {
+        "id": "a",
+        "reply": {
+            "1": "raignée !",
+            "2": "rtichaud !",
+            "3": "rabe Oo"
+        }
+      },{
+        "id": "ein",
+        "reply": {
+            "1": "deux ?",
+            "2": "dien !",
+            "3": "bécile :p"
+        }
+      },{
+        "id": "oui",
+        "reply": {
+            "1": "stiti !"
+        }
+      },{
+        "id": "pas",
+        "reply": {
+            "1": "stèque !"
+        }
+      },{
+        "id": "re",
+        "reply": {
+            "1": "nard !",
+            "2": "quin !",
+            "3": "né LA TAUPE !"
+        }
+      },{
+        "id": "de",
+        "reply": {
+            "1": "trois !"
+        }
+      },{
+        "id": "quoi",
+        "reply": {
+            "1": "feur !",
+            "2": "feuse !",
+            "3": "fure !"
+        }
+      },{
+        "id": "ouais",
+        "reply": {
+            "1": "stern !"
+        }
+      },
+      {
+        "id": {
+            "1":"comment",
+            "2":"commen"
+        },
+        "reply": {
+            "1": "do Ghost Recon !"
+        }
+      },
+      {
+        "id": {
+            "1":"fort",
+            "2":"for"
+        },
+        "reply": {
+            "1": "midable !"
+        }
+      },
+      {
+        "id": {
+            "1":"0 + 0",
+            "2":"0+0"
+        },
+        "reply": {
+            "1": "La tête a Tito :D"
+        }
+      }
+    ]
+  }
