@@ -5,157 +5,56 @@ const fs = require('fs');
 const axios = require('axios');
 const token = process.env.DISCORD_TOKEN;
 
-var c = 0;
+var TITOS = 131930102224125954;
+var rateJoke = 400; // 100 = Each msg have 1% to trigger joke()
 var tabStats;
+var tabResponses;
 var pathStatsRecap = "Stats-Recap/";
 var adagio; // Serveur de l'ami qui ne veut plus du mot "charo"
 
 try {
 bot.on('ready', function () {
-    c = getRandom(0,2);
     setInterval(resetStats, 86400000); // 1 day = 86 400 000 ms
     console.log("Francisco-Bot connecté !");
     adagio = bot.guilds.find("id", "627657355764695040");
     loadStats();
+    loadResponses();
 
 })
 } catch (exc) { console.log(exc); }
 
 try {
 bot.on('message', msg => {
-if(msg.author.id !== bot.user.id && msg.author.id != 131930102224125954) { // Ici j'empeche le bot de se répondre a lui même et a mon compte
-    if(msg.content.toLowerCase().includes("charo ") && msg.guild.id == adagio.id || msg.content.toLowerCase() == "charo" && msg.guild.id == adagio.id) { // Demande d'un ami pour empêcher ce mot sur son serv
-        msg.delete();
-    } else {
-        getmsg(msg).then( function(res) { 
-        
-        if(res.substring(res.length - 3) === "ein") {
-            addStats("hein");
-            if(c === 1) {
-                msg.reply("dien !");
-            }
-            else if(c === 2) {
-                msg.reply("bécile ?");
-            }
-            else {
-                msg.reply("2 !")
-            }
-        c = getRandom(0,2);
-        }
-        else if(res.substring(res.length - 3) === "oui")  {
-            if(getRandom(0,2) == 1) {
-                addStats("oui");
-                msg.reply("stiti !");
-            }
-        } 
-        else if(res.substring(res.length - 3) === "pas") {
-            if(getRandom(0,3) == 2) {
-                addStats("pas");
-                msg.reply("stèque !");
-            }
-        }
-        else if(res === "re") {
-            addStats("re");
-            if(c === 1) {
-                msg.reply("nard !");
-            }
-            else if(c === 2) {
-                msg.reply("quin ?");
-            }
-            else {
-                msg.reply("né LA TAUPE !")
-            }
-            c = getRandom(0,2);
-        }
-        else if(res === "de" || res.substring(res.length - 3) === "deu" || res.substring(res.length - 4) === "deux") {
-            addStats("de");
-            msg.reply("3 !");
-        }
-        else if(res.substring(res.length - 4) === "quoi") {
-            if(getRandom(0,2) == 1) {
-                addStats("quoi");
-                    if(c === 1) {
-                        msg.reply("fure !");
-                    }
-                    else if(c === 2) {
-                        msg.reply("feur ?");
-                    }
-                    else {
-                        msg.reply("feuse !")
-                    }
-                c = getRandom(0,2);
-            }
-        }
-        else if(res.substring(res.length - 5) === "ouais") {
-            addStats("ouais");
-            msg.reply("stern !");
-        }
-        else if(res === "o" || res === "oo" || res === "ooo" || res === "oooo" || res === "ooooo" || res === "oooooo") {
-            addStats("o");
-            msg.reply("bama !");
-        }
-        else if(res.substring(res.length - 7) === "comment" || res.substring(res.length - 6) === "commen") {
-            addStats("comment");
-            msg.reply("do Ghost Recon !");
-        }
-        else if(res.substring(res.length - 4) === "fort" || res.substring(res.length - 3) === "for") {
-            addStats("fort");
-            msg.reply("midable");
-        }
-        else if(res.trim() ==="0+0" || res.trim() ==="0 + 0") {
-            addStats("0+0");
-            msg.reply("La tête a Tito");
-        }
-        else if(res === "a" || res === "aa" || res === "aaa" || res === "aaaa" || res === "aaaaa" || res === "aaaaaa") {
-
-            if(res.substring(res.length - 2) === "ba") {
-                addStats("ba");
-                if(c === 1) {
-                    msg.reply("nane !");
-                }
-                else if(c === 2) {
-                    msg.reply("bar !");
-                }
-                else {
-                    msg.reply("bôrd !");
-                }
-                c = getRandom(0,2);
-            }
-            else if(res.substring(res.length - 1) === "a"){
-                if(getRandom(0,4) == 2) {
-                    addStats("a");
-                    if(c === 1) {
-                        msg.reply("raignée !");
-                    }
-                    else if(c === 2) {
-                        msg.reply("rtichaud !");
-                    }
-                    else {
-                        msg.reply("rabe :O");
-                    }
-                    c = getRandom(0,2);
-                }
-            }
-        }
-        else if(res.substring(res.length - 9) === "t'esmoche" || res.substring(res.length - 8) === "tesmoche" || res.substring(res.length - 6) === "tmoche" || res.substring(res.length - 5) === "tpabo") {
-            addStats("moche");
-            msg.reply("Toi aussi :p");
-        } else if(res.includes("stats") && res.includes(bot.user.id)) {
-            var statResult = "Reset le 1 et le 16 du mois";
-            tabStats.stats.forEach(stat => {
-                statResult += "\n" + stat.id + ": " + stat.count;
-            });
-            msg.author.sendMessage(statResult);
+    //Prevent the bot to do a infinity loop, TITOS is my user id
+    if(msg.author.id !== bot.user.id && msg.author.id != TITOS) { 
+        if(msg.content.toLowerCase().includes("charo ") && msg.guild.id == adagio.id || msg.content.toLowerCase() == "charo" && msg.guild.id == adagio.id || msg.content.toLowerCase().includes(" charo") && msg.guild.id == adagio.id) {
+            msg.delete();
         } else {
-            if(getRandom(0,400) === 69) {
+            if(getRandom(0, rateJoke) === 42)
                 joke(msg);
-            }
-        }
+
+            getmsg(msg).then( function(res) {
+                // 1st loop : enter in each JSON object in responses array 
+                for(var i = 0; i < tabResponses.responses.length; i++) {
+                    // 2nd loop : enter in each properties of the object JSON
+                    for (var j = 0; j < tabResponses.responses[i].idArr.length; j++) {
+                        if (tabResponses.responses[i].idArr[j].id === res.substring(res.length - tabResponses.responses[i].idArr[j].id.length)) {
+                            if(getRandom(0, tabResponses.responses[i].rate) === 0) {
+                                addStats(tabResponses.responses[i].idArr[0].id);
+                                getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
+                                    msg.reply(arrayReply);
+                                }).catch(err => { console.log(err); });
+                            }
+                            i = Number.MAX_SAFE_INTEGER;
+                            break;
+                        }
+                    }
+                }
             }).catch(function(err) {
             console.log(err);
                 })
     } 
-} else if(msg.author.id == 131930102224125954) {
+} else if(msg.author.id == TITOS) {
         if(msg.content.includes(bot.user.id) && msg.content.includes("blague")) {
             addStats("jokes");
             joke(msg);
@@ -181,6 +80,33 @@ function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min +1)) + min;
 }
 
+function loadResponses() {
+    fs.readFile('response.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("Responses file read failed:", err)
+            return
+        } else {
+            try {
+                tabResponses = JSON.parse(jsonString)
+        } catch(err) {
+                console.log('Error parsing Responses JSON string:', err)
+            } 
+        }
+    });
+}
+
+function getResponse(respArr) {
+    return new Promise(function (resolve, reject) {
+        try {
+            var tabResp = new Array();
+            respArr.forEach(resp => {
+                tabResp.push(resp.reply);
+            });
+            resolve(tabResp[getRandom(0, tabResp.length - 1)]);
+        } catch(err) { reject(err); }
+    })
+}
+
 function getmsg(chainmsg) {     
     return new Promise(function (resolve, reject) {
         try {
@@ -196,16 +122,17 @@ function getmsg(chainmsg) {
     })
 }
 
-
 async function joke(msg) {
     const config = {
         method: 'get',
+        // the API that give jokes is on the same server than the bot
+        //https://github.com/Mr-Titos/API-Jokes 
         url: 'http://localhost:4242',
         headers: { 'method': 'random' }
     }
     let res = await axios(config);
-    var jokeuh = res.data; // Axios has already do JSON.parse()
-    msg.reply("**" + jokeuh.question + "**" + "\n" + '_' + jokeuh.answer + '_');
+    var toSendJoke = res.data; // Axios has already do JSON.parse()
+    msg.reply("**" + toSendJoke.question + "**" + "\n" + '_' + toSendJoke.answer + '_');
 
 }
 

@@ -1,80 +1,188 @@
 {
     "responses": [
       {
-        "id": "a",
-        "reply": {
-            "1": "raignée !",
-            "2": "rtichaud !",
-            "3": "rabe Oo"
-        }
+        "idArr": [
+          {
+            "id": "a"
+          },
+          {
+            "id": "aa"
+          },
+          {
+            "id": "aaa"
+          },
+          {
+            "id": "aaaa"
+          },
+          {
+            "id": "aaaaa"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "raignée !"
+          },
+          {
+            "reply": "rtichaud !"
+          },
+          {
+            "reply": "rabe Oo"
+          }
+        ],
+        "rate": "3"
       },{
-        "id": "ein",
-        "reply": {
-            "1": "deux ?",
-            "2": "dien !",
-            "3": "bécile :p"
-        }
+        "idArr": [
+          {
+            "id": "ein"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "deux !"
+          },
+          {
+            "reply": "dien ?"
+          },
+          {
+            "reply": "bécile ?"
+          }
+        ],
+        "rate": "0"
       },{
-        "id": "oui",
-        "reply": {
-            "1": "stiti !"
-        }
+        "idArr": [
+          {
+            "id": "oui"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "stiti !"
+          }
+        ],
+        "rate": "2"
       },{
-        "id": "pas",
-        "reply": {
-            "1": "stèque !"
-        }
+        "idArr": [
+          {
+            "id": "pas"
+          }
+      ],
+        "replyArr": [
+          {
+            "reply": "stèqe !"
+          }
+        ],
+        "rate": "0"
       },{
-        "id": "re",
-        "reply": {
-            "1": "nard !",
-            "2": "quin !",
-            "3": "né LA TAUPE !"
-        }
+        "idArr": [
+          {
+            "id": "re"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "nard !"
+          },
+          {
+            "reply": "quin !"
+          },
+          {
+            "reply": "né la TAUPE !"
+          }
+        ],
+        "rate": "0"
       },{
-        "id": "de",
-        "reply": {
-            "1": "trois !"
-        }
+        "idArr": [
+          {
+            "id": "de"
+          },
+          {
+            "id": "deu"
+          }
+        ],
+        "replyArr": [
+            {
+            "reply": "3 !"
+          }
+        ],
+        "rate": "0"
       },{
-        "id": "quoi",
-        "reply": {
-            "1": "feur !",
-            "2": "feuse !",
-            "3": "fure !"
-        }
+        "idArr": [
+          {
+            "id": "quoi"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "feur !"
+          },
+          {
+            "reply": "feuse !"
+          },
+          {
+            "reply": "fure !"
+          }
+        ],
+        "rate": "1"
       },{
-        "id": "ouais",
-        "reply": {
-            "1": "stern !"
-        }
+        "idArr": [
+          {
+            "id": "ouais"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "stern !"
+          }
+        ],
+        "rate": "0"
       },
       {
-        "id": {
-            "1":"comment",
-            "2":"commen"
-        },
-        "reply": {
-            "1": "do Ghost Recon !"
-        }
+        "idArr": [
+          {
+            "id": "comment"
+          },
+          {
+            "id": "commen"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "do Ghost Recon"
+          }
+        ],
+        "rate": "0"
       },
       {
-        "id": {
-            "1":"fort",
-            "2":"for"
-        },
-        "reply": {
-            "1": "midable !"
-        }
+        "idArr": [
+          {
+            "id": "fort"
+          },
+          {
+            "id": "for"
+          }
+        ],
+        "replyArr": [
+          {
+            "reply": "midable !"
+          }
+        ],
+        "rate": "0"
       },
       {
-        "id": {
-            "1":"0 + 0",
-            "2":"0+0"
-        },
-        "reply": {
-            "1": "La tête a Tito :D"
-        }
+        "idArr": [
+          {
+            "id": "0+0"
+          },
+          {
+            "id": "0 + 0"
+          }
+        ],
+        "replyArr": [
+            {
+              "reply": "La tête a Tito :D"
+            }
+        ],
+        "rate": "0"
       }
     ]
   }
