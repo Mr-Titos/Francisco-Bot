@@ -29,7 +29,8 @@
             "reply": "rabe Oo"
           }
         ],
-        "rate": "3"
+        "rate": "3",
+        "unique": "true"
       },{
         "idArr": [
           {
@@ -47,7 +48,8 @@
             "reply": "bécile ?"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       },{
         "idArr": [
           {
@@ -59,7 +61,8 @@
             "reply": "stiti !"
           }
         ],
-        "rate": "2"
+        "rate": "2",
+        "unique": "false"
       },{
         "idArr": [
           {
@@ -71,7 +74,8 @@
             "reply": "stèqe !"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       },{
         "idArr": [
           {
@@ -89,7 +93,8 @@
             "reply": "né la TAUPE !"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "true"
       },{
         "idArr": [
           {
@@ -104,7 +109,8 @@
             "reply": "3 !"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "true"
       },{
         "idArr": [
           {
@@ -122,7 +128,8 @@
             "reply": "fure !"
           }
         ],
-        "rate": "1"
+        "rate": "1",
+        "unique": "false"
       },{
         "idArr": [
           {
@@ -134,7 +141,8 @@
             "reply": "stern !"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       },
       {
         "idArr": [
@@ -150,7 +158,8 @@
             "reply": "do Ghost Recon"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       },
       {
         "idArr": [
@@ -166,7 +175,8 @@
             "reply": "midable !"
           }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       },
       {
         "idArr": [
@@ -182,7 +192,8 @@
               "reply": "La tête a Tito :D"
             }
         ],
-        "rate": "0"
+        "rate": "0",
+        "unique": "false"
       }
     ]
   }

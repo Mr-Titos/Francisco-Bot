@@ -38,7 +38,19 @@ bot.on('message', msg => {
                 for(var i = 0; i < tabResponses.responses.length; i++) {
                     // 2nd loop : enter in each properties of the object JSON
                     for (var j = 0; j < tabResponses.responses[i].idArr.length; j++) {
-                        if (tabResponses.responses[i].idArr[j].id === res.substring(res.length - tabResponses.responses[i].idArr[j].id.length)) {
+                        //Verification of the user's msg & reponses objects AND if the entire msg need to be compare or not
+                        if (tabResponses.responses[i].idArr[j].id === res.substring(res.length - tabResponses.responses[i].idArr[j].id.length) && tabResponses.responses[i].unique === "false") {
+                            if(getRandom(0, tabResponses.responses[i].rate) === 0) {
+                                addStats(tabResponses.responses[i].idArr[0].id);
+                                getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
+                                    msg.reply(arrayReply);
+                                }).catch(err => { console.log(err); });
+                            }
+                            i = Number.MAX_SAFE_INTEGER;
+                            break;
+                        } 
+                        // Verfication of the entire msg and each JSON object who have unique = true
+                        else if(tabResponses.responses[i].idArr[j].id ===  res && tabResponses.responses[i].unique === "true") {
                             if(getRandom(0, tabResponses.responses[i].rate) === 0) {
                                 addStats(tabResponses.responses[i].idArr[0].id);
                                 getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
@@ -184,4 +196,3 @@ function resetStats() {
 }
 
 bot.login(token);
-
