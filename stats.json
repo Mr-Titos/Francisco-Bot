@@ -2,55 +2,51 @@
   "stats": [
     {
       "id": "jokes",
-      "count": 19
+      "count": 0
     },
     {
       "id": "ein",
-      "count": 26
+      "count": 10
     },
     {
       "id": "oui",
-      "count": 20
+      "count": 10
     },
     {
       "id": "pas",
-      "count": 30
+      "count": 21
     },
     {
       "id": "re",
-      "count": 13
+      "count": 19
     },
     {
       "id": "de",
-      "count": 3
+      "count": 38
     },
     {
       "id": "quoi",
-      "count": 26
+      "count": 8
     },
     {
       "id": "ouais",
-      "count": 5
-    },
-    {
-      "id": "o",
-      "count": 3
+      "count": 7
     },
     {
       "id": "comment",
-      "count": 2
+      "count": 7
     },
     {
       "id": "fort",
-      "count": 5
+      "count": 2
     },
     {
       "id": "a",
-      "count": 57
+      "count": 17
     },
     {
       "id": "0+0",
-      "count": 9
+      "count": 0
     }
   ]
 }

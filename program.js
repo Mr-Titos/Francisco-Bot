@@ -30,8 +30,10 @@ bot.on('message', msg => {
         if(msg.content.toLowerCase().includes("charo ") && msg.guild.id == adagio.id || msg.content.toLowerCase() == "charo" && msg.guild.id == adagio.id || msg.content.toLowerCase().includes(" charo") && msg.guild.id == adagio.id) {
             msg.delete();
         } else {
-            if(getRandom(0, rateJoke) === 42)
+            if(getRandom(0, rateJoke) === 42) {
                 joke(msg);
+                addStats("jokes");
+            }
 
             getmsg(msg).then( function(res) {
                 // 1st loop : enter in each JSON object in responses array 
