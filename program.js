@@ -27,47 +27,43 @@ try {
 bot.on('message', msg => {
     //Prevent the bot to do a infinity loop, TITOS is my user id
     if(msg.author.id !== bot.user.id && msg.author.id != TITOS) { 
-        if(msg.content.toLowerCase().includes("charo ") && msg.guild.id == adagio.id || msg.content.toLowerCase() == "charo" && msg.guild.id == adagio.id || msg.content.toLowerCase().includes(" charo") && msg.guild.id == adagio.id) {
-            msg.delete();
-        } else {
-            if(getRandom(0, rateJoke) === 42) {
-                joke(msg);
-                addStats("jokes");
-            }
+        if(getRandom(0, rateJoke) === 42) {
+            joke(msg);
+            addStats("jokes");
+        }
 
-            getmsg(msg).then( function(res) {
-                // 1st loop : enter in each JSON object in responses array 
-                for(var i = 0; i < tabResponses.responses.length; i++) {
-                    // 2nd loop : enter in each properties of the object JSON
-                    for (var j = 0; j < tabResponses.responses[i].idArr.length; j++) {
-                        //Verification of the user's msg & reponses objects AND if the entire msg need to be compare or not
-                        if (tabResponses.responses[i].idArr[j].id === res.substring(res.length - tabResponses.responses[i].idArr[j].id.length) && tabResponses.responses[i].unique === "false") {
-                            if(getRandom(0, tabResponses.responses[i].rate) === 0) {
-                                addStats(tabResponses.responses[i].idArr[0].id);
-                                getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
-                                    msg.reply(arrayReply);
-                                }).catch(err => { console.log(err); });
-                            }
-                            i = Number.MAX_SAFE_INTEGER;
-                            break;
-                        } 
-                        // Verfication of the entire msg and each JSON object who have unique = true
-                        else if(tabResponses.responses[i].idArr[j].id ===  res && tabResponses.responses[i].unique === "true") {
-                            if(getRandom(0, tabResponses.responses[i].rate) === 0) {
-                                addStats(tabResponses.responses[i].idArr[0].id);
-                                getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
-                                    msg.reply(arrayReply);
-                                }).catch(err => { console.log(err); });
-                            }
-                            i = Number.MAX_SAFE_INTEGER;
-                            break;
+        getmsg(msg).then( function(res) {
+            // 1st loop : enter in each JSON object in responses array 
+            for(var i = 0; i < tabResponses.responses.length; i++) {
+                // 2nd loop : enter in each properties of the object JSON
+                for (var j = 0; j < tabResponses.responses[i].idArr.length; j++) {
+                    //Verification of the user's msg & reponses objects AND if the entire msg need to be compare or not
+                    if (tabResponses.responses[i].idArr[j].id === res.substring(res.length - tabResponses.responses[i].idArr[j].id.length) && tabResponses.responses[i].unique === "false") {
+                        if(getRandom(0, tabResponses.responses[i].rate) === 0) {
+                            addStats(tabResponses.responses[i].idArr[0].id);
+                            getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
+                                msg.reply(arrayReply);
+                            }).catch(err => { console.log(err); });
                         }
+                        i = Number.MAX_SAFE_INTEGER;
+                        break;
+                    } 
+                    // Verfication of the entire msg and each JSON object who have unique = true
+                    else if(tabResponses.responses[i].idArr[j].id ===  res && tabResponses.responses[i].unique === "true") {
+                        if(getRandom(0, tabResponses.responses[i].rate) === 0) {
+                            addStats(tabResponses.responses[i].idArr[0].id);
+                            getResponse(tabResponses.responses[i].replyArr).then(arrayReply => {
+                                msg.reply(arrayReply);
+                            }).catch(err => { console.log(err); });
+                        }
+                        i = Number.MAX_SAFE_INTEGER;
+                        break;
                     }
                 }
-            }).catch(function(err) {
-            console.log(err);
-                })
-    } 
+            }
+        }).catch(function(err) {
+        console.log(err);
+            })
 } else if(msg.author.id == TITOS) {
         if(msg.content.includes(bot.user.id) && msg.content.includes("blague")) {
             addStats("jokes");
