@@ -10,13 +10,11 @@ var rateJoke = 400; // 100 = Each msg have 1% to trigger joke()
 var tabStats;
 var tabResponses;
 var pathStatsRecap = "Stats-Recap/";
-var adagio; // Serveur de l'ami qui ne veut plus du mot "charo"
 
 try {
 bot.on('ready', function () {
     setInterval(resetStats, 86400000); // 1 day = 86 400 000 ms
     console.log("Francisco-Bot connecté !");
-    adagio = bot.guilds.find("id", "627657355764695040");
     loadStats();
     loadResponses();
 
