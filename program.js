@@ -136,9 +136,9 @@ async function joke(msg) {
     const config = {
         method: 'get',
         // the API that give jokes is on the same server than the bot
-        //https://github.com/Mr-Titos/API-Jokes 
+        //https://github.com/Mr-Titos/API-Joke
         url: 'http://localhost:4242',
-        headers: { 'method': 'random' }
+        headers: { 'method': 'random', 'file': 'jokes.json' }
     }
     let res = await axios(config);
     var toSendJoke = res.data; // Axios has already do JSON.parse()
