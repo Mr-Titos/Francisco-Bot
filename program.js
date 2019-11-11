@@ -67,11 +67,11 @@ bot.on('message', msg => {
             addStats("jokes");
             joke(msg);
         } else if(msg.content.includes(bot.user.id) && msg.content.includes("stats")) {
-            var statResult = "Reset le 1 et le 16 du mois";
+            var statResult = "```Reset le 1 et le 16 du mois";
             tabStats.stats.forEach(stat => {
                 statResult += "\n" + stat.id + ": " + stat.count;
             });
-            msg.author.sendMessage(statResult);
+            msg.author.sendMessage(statResult + "```");
         }      
     }
   });
